@@ -35,9 +35,8 @@ def setGridAdjacency(grid):
    select = list(filter( lambda key: grid[key] == '0', grid))
    scouts = [ [ grid[key] for key in filter_cells(cell) ] for cell in select ] 
    values = [ "".join(set(digits) - set(scout)) for scout in scouts ]
-   indexs = zip(select, values)
 
-   for key, value  in indexs:
+   for key, value in zip(select, values):
       grid[key] = value
 
    return grid
