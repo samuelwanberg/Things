@@ -45,13 +45,17 @@ def test_case():
    assert len(squares) == 9
    assert len(dataStrcutre) == 81
    
-
-
-def displaySudokuGrid(board):
-   line1 ='{0} {1} {2} | {3} {4} {5} | {6} {7} {8}'
+def displaySudokuGrid(grid):
    
-   for i in board:
-      print(i)
+   xmargin = 1
+   lenWidth = xmargin + max(map(len, grid.values()))
+   line = '+'.join(['-' * (lenWidth * 3)] * 3)
+   
+   for i,row in enumerate(sudokuBoard): 
+      
+      print("".join([(grid[k].center(lenWidth)) + ("|" if j in [2,5] else "") for j, k in enumerate(row)] ))
+      
+      print(( line if (i + 1) % 3 == 0  else "" ))
 
 grid = "4.....8.5.3..........7..........................................................."
 
@@ -84,5 +88,5 @@ if __name__ == '__main__':
    
    g1 = parseGrid(grid3)
    g1 = setGridAdjacency(g1)
-   print(g1)
+   displaySudokuGrid(g1)
    #displaySudokuGrid(sudokuBoard)
